@@ -22,14 +22,7 @@ namespace TechJobs.Controllers
 
             if (searchType != "all")
             {
-                if (searchTerm == null)
-                {
-                    jobs = JobData.FindByValue(searchType);
-                }
-                else
-                {
-                    jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
-                }
+            jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
             }
 
             else

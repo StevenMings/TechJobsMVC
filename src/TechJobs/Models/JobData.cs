@@ -51,26 +51,20 @@ namespace TechJobs.Models
             // load data, if not already loaded
             LoadData();
 
-            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+            List<Dictionary<string, string>> jobsResult = new List<Dictionary<string, string>>();
 
-            foreach (Dictionary<string, string> row in AllJobs)
+            foreach (Dictionary<string, string> job in AllJobs)
             {
-
-                foreach (string key in row.Keys)
+                foreach (string val in job.Values)
                 {
-                    string aValue = row[key];
-
-                    if (aValue.ToLower().Contains(value.ToLower()))
+                    if (val.ToLower().Contains(value.ToLower()) || !jobsResult.Contains(job))
                     {
-                        jobs.Add(row);
-
-                        // Finding one field in a job that matches is sufficient
-                        break;
+                        jobsResult.Add(job);
                     }
                 }
-            }
 
-            return jobs;
+            }
+            return jobsResult;
         }
 
         /**

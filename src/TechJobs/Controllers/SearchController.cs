@@ -22,12 +22,26 @@ namespace TechJobs.Controllers
 
             if (searchType != "all")
             {
-                jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
+                if (searchTerm == null)
+                {
+                    jobs = JobData.FindByValue(searchType);
+                }
+                else
+                {
+                    jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
+                }
             }
 
             else
             {
+                if (searchTerm == null)
+                {
+                    jobs = JobData.FindAll();  
+                }
+                else
+                {
                 jobs = JobData.FindByValue(searchTerm);
+                }
             }
             ViewBag.jobs = jobs;
             return View("Views/Search/Index.cshtml");
